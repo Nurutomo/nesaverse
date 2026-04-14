@@ -1,0 +1,78 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  box-sizing: border-box;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #1f2937, #111827 65%, #0f172a);
+  color: #f9fafb;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.hero h1 {
+  margin: 0.4rem 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 40ch;
+  color: #e2e8f0;
+}
+
+.accounts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.25rem;
+  border: 1px solid #dbe2ea;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.card h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.25rem;
+}
+
+.card p {
+  margin: 0;
+  color: #475569;
+  min-height: 3.75rem;
+}
+
+.card a {
+  margin-top: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  color: #f8fafc;
+  background: #0f172a;
+  border-radius: 0.65rem;
+  padding: 0.55rem 0.85rem;
+}
+
+.card a:hover {
+  background: #1e293b;
+}
