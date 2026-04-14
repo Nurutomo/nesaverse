@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 const instagramAccounts = [
   {
     handle: '@unesartire',
     href: 'https://www.instagram.com/unesartire/',
-    tagline: 'Seni dan budaya dari para kreator UNESA.',
+    desc: 'Seni dan budaya dari para kreator UNESA.',
+    accentClass: 'card-accent-art',
     emoji: '🎨',
   },
   {
     handle: '@unesa_parkir',
     href: 'https://www.instagram.com/unesa_parkir/',
-    tagline: 'Informasi parkir dan mobilitas di sekitar kampus.',
+    desc: 'Informasi parkir dan mobilitas di sekitar kampus.',
+    accentClass: 'card-accent-parkir',
     emoji: '🅿️',
   },
   {
     handle: '@wibunesa',
     href: 'https://www.instagram.com/wibunesa/',
-    tagline: 'Highlight kehidupan mahasiswa dan cerita komunitas.',
+    desc: 'Highlight kehidupan mahasiswa dan cerita komunitas.',
+    accentClass: 'card-accent-wibu',
     emoji: '🎓',
   },
 ]
 
-function InstagramIcon() {
+function InstagramIcon({ size = 24 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} aria-hidden="true">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
     </svg>
   )
@@ -32,96 +35,136 @@ function InstagramIcon() {
 
 function SunIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-      <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+    <svg viewBox="0 0 20 20" fill="currentColor" width={20} height={20} aria-hidden="true">
+      <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
     </svg>
   )
 }
 
 function MoonIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
-      <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
+    <svg viewBox="0 0 20 20" fill="currentColor" width={20} height={20} aria-hidden="true">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
     </svg>
   )
 }
 
 function App() {
   const [dark, setDark] = useState(
-    () => document.documentElement.getAttribute('data-theme') === 'dark'
+    () => document.documentElement.classList.contains('dark')
   )
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
-  }, [dark])
+  function toggleTheme() {
+    const next = !dark
+    setDark(next)
+    if (next) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+    try { localStorage.setItem('theme', next ? 'dark' : 'light') } catch { /* ignore */ }
+  }
 
   return (
     <div className="site">
-      <nav className="navbar" aria-label="Main navigation">
-        <a className="navbar-brand" href="/" aria-label="nesaverse home">
-          <div className="navbar-logo" aria-hidden="true">N</div>
-          <div className="navbar-text">
-            <span className="navbar-title">nesaverse</span>
-            <span className="navbar-tagline">Komunitas UNESA</span>
-          </div>
-        </a>
+      {/* ── Navbar ── */}
+      <div className="header-container">
+        <header className="header-glass navbar" id="header">
+          <a className="navbar-brand" href="/" aria-label="nesaverse home">
+            <div className="navbar-logo" aria-hidden="true">N</div>
+            <div>
+              <div className="navbar-name">nesaverse</div>
+              <div className="navbar-tagline">Komunitas UNESA</div>
+            </div>
+          </a>
 
-        <div className="navbar-links">
-          {instagramAccounts.map((a, i) => (
-            <a
-              key={a.handle}
-              href={a.href}
-              target="_blank"
-              rel="noreferrer"
-              className={`nav-link${i === 0 ? ' nav-link-accent' : ''}`}
-            >
-              {a.handle}
-            </a>
-          ))}
-          <button
-            className="theme-toggle"
-            onClick={() => setDark((d) => !d)}
-            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {dark ? <SunIcon /> : <MoonIcon />}
-          </button>
-        </div>
-      </nav>
-
-      <main className="main">
-        <section className="hero-card" aria-labelledby="hero-heading">
-          <h1 id="hero-heading" className="hero-title">Welcome to nesaverse :)</h1>
-          <p className="hero-subtitle">
-            Komunitas meme dan konten seputar UNESA 🎓
-          </p>
-          <div className="hero-socials">
-            {instagramAccounts.map((a) => (
-              <a key={a.handle} href={a.href} target="_blank" rel="noreferrer" className="social-btn">
-                <InstagramIcon />
+          <nav className="navbar-links" aria-label="Main navigation">
+            {instagramAccounts.map((a, i) => (
+              <a
+                key={a.handle}
+                href={a.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`nav-link${i === 0 ? ' nav-link--brand' : ''}`}
+              >
                 {a.handle}
               </a>
             ))}
-          </div>
-        </section>
-
-        <section className="cards-grid" aria-label="Featured Instagram accounts">
-          {instagramAccounts.map((account) => (
-            <a
-              key={account.handle}
-              href={account.href}
-              target="_blank"
-              rel="noreferrer"
-              className="feature-card"
+            <button
+              className="theme-btn"
+              onClick={toggleTheme}
+              aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              <div className="card-icon" aria-hidden="true">{account.emoji}</div>
-              <div className="card-body">
-                <h2>{account.handle}</h2>
-                <p>{account.tagline}</p>
-              </div>
-            </a>
+              {dark ? <SunIcon /> : <MoonIcon />}
+            </button>
+          </nav>
+        </header>
+      </div>
+
+      {/* ── Main ── */}
+      <main className="main">
+        {/* Welcome hero card */}
+        <div className="welcome-card glassmorphism" id="home-welcome-container">
+          <div>
+            <p className="welcome-title">Welcome to nesaverse :)</p>
+            <p className="welcome-sub">
+              Komunitas meme dan konten seputar UNESA 🎓
+            </p>
+          </div>
+          <div className="social-links">
+            {instagramAccounts.map((a) => (
+              <a
+                key={a.handle}
+                href={a.href}
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                aria-label={`Instagram ${a.handle}`}
+              >
+                <InstagramIcon size={20} />
+                <span>{a.handle}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Section header */}
+        <div className="section-header glassmorphism">
+          <h2 className="section-title">Akun Instagram</h2>
+          <p className="section-sub">
+            Ikuti akun-akun Instagram resmi komunitas nesaverse.
+          </p>
+        </div>
+
+        {/* Feature cards */}
+        <div className="cards-grid">
+          {instagramAccounts.map((account) => (
+            <article key={account.handle} className="feature-card glassmorphism">
+              <a
+                className="feature-card__link"
+                href={account.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className={`feature-card__media ${account.accentClass}`}>
+                  <div className="feature-card__media-inner">
+                    <span role="img" aria-label={account.handle}>{account.emoji}</span>
+                  </div>
+                </div>
+                <div className="feature-card__content">
+                  <h2 className="feature-card__title">{account.handle}</h2>
+                  <p className="feature-card__desc">{account.desc}</p>
+                </div>
+              </a>
+            </article>
           ))}
-        </section>
+        </div>
       </main>
+
+      {/* ── Footer ── */}
+      <footer className="footer glassmorphism">
+        © 2026 nesaverse. All rights reserved.
+      </footer>
     </div>
   )
 }

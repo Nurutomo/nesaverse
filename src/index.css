@@ -1,76 +1,30 @@
-/* ── base reset & font ─────────────────────────── */
+/* ── Poppins fallback if Google Fonts unavailable ── */
 :root {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* light defaults */
-  --bg:              #eef0f4;
-  --dot:             rgba(15, 23, 42, 0.1);
-  --page-border:     rgba(15, 23, 42, 0.1);
-  --card-bg:         #ffffff;
-  --card-bg-hover:   #f8fafc;
-  --card-border:     rgba(15, 23, 42, 0.08);
-  --text:            #0f172a;
-  --text-muted:      #64748b;
-  --accent:          #d97706;
-  --accent-hover:    #b45309;
-  --social-bg:       rgba(15, 23, 42, 0.05);
-  --social-bg-hover: rgba(15, 23, 42, 0.09);
-  --glass-bg:        rgba(255, 255, 255, 0.50);
-  --glass-border:    rgba(255, 255, 255, 0.80);
-  --glass-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+  /* ── Brand & light-mode tokens ── */
+  --brand:           #FFA324;
+  --brand-muted:     rgba(255, 163, 36, 0.15);
+  --bg:              #f3f4f6;
+  --dot:             rgba(15, 23, 42, 0.09);
+  --text:            #1f2937;
+  --text-muted:      #6b7280;
+  --text-card:       #111827;
+  --text-card-muted: #4b5563;
 }
 
-/* system dark (before JS hydrates) */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg:              #0d1117;
-    --dot:             rgba(255, 255, 255, 0.07);
-    --page-border:     rgba(255, 255, 255, 0.08);
-    --card-bg:         #161b27;
-    --card-bg-hover:   #1c2333;
-    --card-border:     rgba(255, 255, 255, 0.07);
-    --text:            #e2e8f0;
-    --text-muted:      #94a3b8;
-    --accent:          #eab308;
-    --accent-hover:    #ca8a04;
-    --social-bg:       rgba(255, 255, 255, 0.07);
-    --social-bg-hover: rgba(255, 255, 255, 0.12);
-    --glass-bg:        rgba(13, 17, 23, 0.45);
-    --glass-border:    rgba(255, 255, 255, 0.10);
-    --glass-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-  }
-}
-
-/* manual dark toggle */
-[data-theme='dark'] {
-  --bg:              #0d1117;
-  --dot:             rgba(255, 255, 255, 0.07);
-  --page-border:     rgba(255, 255, 255, 0.08);
-  --card-bg:         #161b27;
-  --card-bg-hover:   #1c2333;
-  --card-border:     rgba(255, 255, 255, 0.07);
-  --text:            #e2e8f0;
-  --text-muted:      #94a3b8;
-  --accent:          #eab308;
-  --accent-hover:    #ca8a04;
-  --social-bg:       rgba(255, 255, 255, 0.07);
-  --social-bg-hover: rgba(255, 255, 255, 0.12);
-  --glass-bg:        rgba(13, 17, 23, 0.45);
-  --glass-border:    rgba(255, 255, 255, 0.10);
-  --glass-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+/* ── Dark-mode tokens (triggered by .dark on <html>) ── */
+html.dark {
+  --bg:              #111827;
+  --dot:             rgba(255, 255, 255, 0.05);
+  --text:            #e5e7eb;
+  --text-muted:      #9ca3af;
+  --text-card:       #f3f4f6;
+  --text-card-muted: #9ca3af;
 }
 
 * { box-sizing: border-box; }
@@ -79,6 +33,7 @@ body {
   margin: 0;
   color: var(--text);
   background-color: var(--bg);
+  /* Subtle dot-grid matching mekdiunm.com screenshots */
   background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
   background-size: 24px 24px;
   transition: background-color 0.25s, color 0.25s;
