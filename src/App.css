@@ -1,15 +1,25 @@
 /* ─────────────────────────────────────────────────────────────
-   Glassmorphism — exact values from mekdiunm.com critical CSS
-   ───────────────────────────────────────────────────────────── */
+  Glassmorphism base styles for nesaverse cards and header
+  ───────────────────────────────────────────────────────────── */
 .glassmorphism {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
+}
+
+html.dark .glassmorphism {
+  background: linear-gradient(
+    90deg,
+    rgba(12, 24, 47, 0.88) 0%,
+    rgba(18, 35, 67, 0.78) 50%,
+    rgba(12, 24, 47, 0.88) 100%
+  );
+  border-color: rgba(148, 163, 184, 0.16);
 }
 
 .header-glass {
@@ -17,7 +27,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.28);
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
@@ -25,8 +35,13 @@
 }
 
 html.dark .header-glass {
-  background: rgba(31, 41, 55, 0.4);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    90deg,
+    rgba(12, 24, 47, 0.92) 0%,
+    rgba(18, 35, 67, 0.84) 50%,
+    rgba(12, 24, 47, 0.92) 100%
+  );
+  border-color: rgba(148, 163, 184, 0.2);
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.48);
 }
 
@@ -106,22 +121,96 @@ html.dark .header-glass {
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.9rem;
 }
 
-.nav-link {
+.navbar-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.dropdown-toggle:hover { color: var(--brand); }
+
+.dropdown-caret {
+  transition: transform 0.2s ease;
+}
+
+.dropdown-caret.is-open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  min-width: 11.5rem;
+  border-radius: 0.75rem;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.2);
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.dropdown-menu.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.5rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.nav-link:hover { color: var(--brand); }
-.nav-link--brand { color: var(--brand); }
+.dropdown-link:hover {
+  color: var(--brand);
+  background: rgba(255, 163, 36, 0.12);
+}
 
-html.dark .nav-link { color: #d1d5db; }
-html.dark .nav-link:hover { color: var(--brand); }
+html.dark .dropdown-toggle { color: #d1d5db; }
+html.dark .dropdown-toggle:hover { color: var(--brand); }
+
+html.dark .dropdown-menu {
+  background: rgba(12, 24, 47, 0.96);
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+html.dark .dropdown-link { color: #d1d5db; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-caret,
+  .dropdown-menu,
+  .dropdown-menu.is-open {
+    transition: none;
+  }
+}
 
 .theme-btn {
   color: var(--brand);
@@ -194,6 +283,12 @@ html.dark .welcome-sub { color: #d1d5db; }
 .social-link:hover { color: var(--brand); }
 html.dark .social-link { color: #d1d5db; }
 html.dark .social-link:hover { color: var(--brand); }
+
+.social-link__label { display: none; }
+
+@media (min-width: 640px) {
+  .social-link__label { display: inline; }
+}
 
 @media (min-width: 640px) { .social-link { font-size: 1rem; } }
 @media (min-width: 1024px) { .social-link { font-size: 1.125rem; } }
@@ -279,12 +374,25 @@ html.dark .section-sub { color: #9ca3af; }
 }
 
 .feature-card__media-inner {
-  position: absolute;
+  position: relative;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.feature-card__link:hover .feature-card__image,
+.feature-card__link:focus-visible .feature-card__image {
+  transform: scale(1.05);
 }
 
 /* Right text panel */
@@ -302,7 +410,7 @@ html.dark .section-sub { color: #9ca3af; }
   font-weight: 600;
   color: var(--text-card);
   margin: 0;
-  transition: color 0.2s;
+  transition: color 0.3s;
 }
 
 html.dark .feature-card__title { color: #f3f4f6; }
@@ -314,14 +422,10 @@ html.dark .feature-card__title { color: #f3f4f6; }
   color: var(--text-card-muted);
   margin: 0;
   line-height: 1.5;
+  transition: color 0.3s;
 }
 
 html.dark .feature-card__desc { color: #9ca3af; }
-
-/* Card accent colors */
-.card-accent-art    { background: linear-gradient(135deg, #a855f7, #ec4899); }
-.card-accent-parkir { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
-.card-accent-wibu   { background: linear-gradient(135deg, #f97316, #FFA324); }
 
 /* ── Footer ── */
 .footer {
@@ -336,7 +440,3 @@ html.dark .feature-card__desc { color: #9ca3af; }
 
 html.dark .footer { color: #d1d5db; }
 
-/* ── Mobile: hide nav links ── */
-@media (max-width: 640px) {
-  .navbar-links .nav-link { display: none; }
-}
